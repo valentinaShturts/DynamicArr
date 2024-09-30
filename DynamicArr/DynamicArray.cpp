@@ -97,3 +97,50 @@ void DynamicArray::Reverse()
 		end--;
 	}
 }
+
+DynamicArray DynamicArray::operator+(int a)
+{
+	int new_size = this->size + a;
+	int* new_ptr = new int[new_size];
+	for (int i = 0; i < new_size; i++)
+	{
+		if (i<size)
+		{
+			new_ptr[i] = ptr[i];
+		}
+		else { new_ptr[i] = 0; }
+	}
+	this->size = new_size;
+	this->ptr = new_ptr;
+	return DynamicArray();
+}
+
+DynamicArray DynamicArray::operator-(int a)
+{
+	return DynamicArray();
+}
+
+DynamicArray DynamicArray::operator*(int a)
+{
+	return DynamicArray();
+}
+
+DynamicArray DynamicArray::operator+(DynamicArray b)
+{
+	return DynamicArray();
+}
+
+DynamicArray DynamicArray::operator-(DynamicArray b)
+{
+	return DynamicArray();
+}
+
+DynamicArray DynamicArray::operator++()
+{
+	return DynamicArray();
+}
+
+DynamicArray DynamicArray::operator--()
+{
+	return DynamicArray();
+}

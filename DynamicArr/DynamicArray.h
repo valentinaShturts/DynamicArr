@@ -23,7 +23,12 @@ public:
 	int Search(int a); // поиск элемента в массиве, возвращает индекс наиденного эл., либо -1.
 	void Reverse(); // перезаписывает последовательность элементов в обратном порядке, напрмер 12345 -> 54321
 
-
-
+	DynamicArray operator+(int a);
+	DynamicArray operator-(int a);
+	DynamicArray operator*(int a);
+	DynamicArray operator+(DynamicArray b);
+	DynamicArray operator-(DynamicArray b);
+	DynamicArray operator++();
+	DynamicArray operator--();
 };
 

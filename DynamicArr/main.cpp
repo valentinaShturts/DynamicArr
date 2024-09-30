@@ -25,7 +25,8 @@ int main()
 	cout << "Search number 7 by index: " << a.Search(7) << endl << endl;
 
 	//DynamicArray rezult = GetObj();
-
+	DynamicArray rez = a + 10;
+	rez.Output();
 
 	system("pause");
 }
