@@ -13,20 +13,13 @@ DynamicArray GetObj() //возврат по значению
 }
 int main()
 {
-	DynamicArray a(5); // constructor 1 param
+	DynamicArray a(5); 
 	a.Input();
 	a.Output();
-	a.Sort();
-	a.Output();
-	a.ReSize(3); // copy constructor
-	a.Output();
-	a.Reverse();
-	a.Output();
-	cout << "Search number 7 by index: " << a.Search(7) << endl << endl;
 
-	//DynamicArray rezult = GetObj();
 	DynamicArray rez = a + 10;
 	rez.Output();
-
+	DynamicArray rez1 = a - 2;
+	rez1.Output();
 	system("pause");
 }
