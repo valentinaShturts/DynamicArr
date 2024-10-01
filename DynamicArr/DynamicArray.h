@@ -4,24 +4,24 @@ using namespace std;
 
 class DynamicArray
 {
-	int* ptr; // указатель на динам. массив
-	int size;  // размер массива 
+	int* ptr; 
+	int size;  
 public:
 	DynamicArray();
 	DynamicArray(int);
-	DynamicArray(const DynamicArray&); // copy constructor
+	DynamicArray(const DynamicArray&); 
 	~DynamicArray();
 
-	void Input();// rand
-	void Output() const;// вывод на консоль
+	void Input();
+	void Output() const;
 	int* GetPointer() const;
 	int GetSize() const;
 
-	// реилизовать следующие методы:
-	void ReSize(int new_size);// изменение размера массива
-	void Sort();// сортировка(любой алгоритм сортировки)
-	int Search(int a); // поиск элемента в массиве, возвращает индекс наиденного эл., либо -1.
-	void Reverse(); // перезаписывает последовательность элементов в обратном порядке, напрмер 12345 -> 54321
+	
+	void ReSize(int new_size);
+	void Sort();
+	int Search(int a); 
+	void Reverse(); 
 
 	DynamicArray operator+(int a);
 	DynamicArray operator-(int a);

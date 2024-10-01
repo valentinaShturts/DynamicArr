@@ -10,7 +10,7 @@ DynamicArray::DynamicArray(int S)
 	ptr = new int[S];
 }
 
-DynamicArray::DynamicArray(const DynamicArray& a)// copy constructor
+DynamicArray::DynamicArray(const DynamicArray& a)
 {
 	cout << "Copy construct\n";
 	size = a.size;
@@ -53,16 +53,24 @@ int DynamicArray::GetSize() const
 void DynamicArray::ReSize(int new_size)
 {
 	int* new_ptr = new int[new_size];
-	for (int i = 0; i < new_size; i++)
+
+	int temp;
+	if (new_size < this->size) temp = new_size;
+	else { temp = this->size;}
+
+	for (int i = 0; i < temp; i++)
 	{
 		new_ptr[i] = this->ptr[i];
 	}
-	this->size = new_size;
-	for (int i = 0; i < size; i++)
+
+	for (int i = temp; i < new_size; i++)
 	{
-		ptr[i] = new_ptr[i];
+		new_ptr[i] = 0;
 	}
-	delete[] new_ptr;
+
+	delete[] this->ptr;
+	this->ptr = new_ptr;
+	this->size = new_size;
 }
 void DynamicArray::Sort()
 {
@@ -102,6 +110,7 @@ DynamicArray DynamicArray::operator+(int a)
 {
 	int new_size = this->size + a;
 	int* new_ptr = new int[new_size];
+
 	for (int i = 0; i < new_size; i++)
 	{
 		if (i<size)
@@ -110,37 +119,129 @@ DynamicArray DynamicArray::operator+(int a)
 		}
 		else { new_ptr[i] = 0; }
 	}
-	this->size = new_size;
+	delete[] this->ptr;
 	this->ptr = new_ptr;
-	return DynamicArray();
+	this->size = new_size;
+	return *this;
 }
 
 DynamicArray DynamicArray::operator-(int a)
 {
-	return DynamicArray();
+	if (this->size > 2)
+	{
+		int new_size = this->size - a;
+		int* new_ptr = new int[new_size];
+
+		for (int i = 0; i < new_size; i++)
+		{
+			new_ptr[i] = ptr[i];
+		}
+		delete[] this->ptr;
+		this->ptr = new_ptr;
+		this->size = new_size;
+		return *this;
+	}
+	else { cout << "Array too small " << endl;  return *this; }
 }
 
 DynamicArray DynamicArray::operator*(int a)
 {
-	return DynamicArray();
+	DynamicArray new_ptr;
+	new_ptr.size = this->size;
+	new_ptr.ptr = new int[new_ptr.size];
+
+	for (int i = 0; i < new_ptr.size; i++)
+	{
+		new_ptr.ptr[i] = ptr[i] * a;
+	}
+	
+	return new_ptr;
 }
 
 DynamicArray DynamicArray::operator+(DynamicArray b)
 {
-	return DynamicArray();
+	DynamicArray new_ptr;
+	new_ptr.size = this->size + b.size;
+	new_ptr.ptr = new int[new_ptr.size];
+
+	for (int i = 0; i < this->size; i++)
+	{
+		new_ptr.ptr[i] = ptr[i];
+	}
+	for (int i = 0; i < b.size; i++)
+	{
+		new_ptr.ptr[this->size + i] = b.ptr[i];
+	}
+	return new_ptr;
 }
 
 DynamicArray DynamicArray::operator-(DynamicArray b)
 {
-	return DynamicArray();
+	int min_size, max_size;
+	int* arr;
+
+	if (this->size > b.size)
+	{
+		min_size = b.size;
+		max_size = this->size;
+		arr = this->ptr;
+	}
+	else if (this->size < b.size)
+	{
+		min_size = this->size;
+		max_size = b.size;
+		arr = b.ptr;
+	}
+	else
+	{
+		cout << "0  They are the same size "; return *this;
+	}
+
+	DynamicArray new_ptr;
+	new_ptr.size = max_size-min_size;
+	new_ptr.ptr = new int[new_ptr.size];
+
+	for (int i = 0; i < new_ptr.size; i++)
+	{
+		new_ptr.ptr[i] = arr[min_size+i];
+	}
+	return new_ptr;
 }
 
 DynamicArray DynamicArray::operator++()
 {
-	return DynamicArray();
+	int new_size = this->size + 1;
+	int* new_ptr = new int[new_size];
+
+	for (int i = 0; i < new_size; i++)
+	{
+		if (i < size)
+		{
+			new_ptr[i] = ptr[i];
+		}
+		else { new_ptr[i] = 0; }
+	}
+	delete[] this->ptr;
+	this->ptr = new_ptr;
+	this->size = new_size;
+	return *this;
 }
 
 DynamicArray DynamicArray::operator--()
 {
-	return DynamicArray();
+	if (this->size > 1)
+	{
+		int new_size = this->size - 1;
+		int* new_ptr = new int[new_size];
+
+		for (int i = 0; i < new_size; i++)
+		{
+			new_ptr[i] = ptr[i];
+		}
+		delete[] this->ptr;
+		this->ptr = new_ptr;
+		this->size = new_size;
+		return *this;
+	}
+	else { cout << "Array too small " << endl;  return *this; }
 }
