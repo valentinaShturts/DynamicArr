@@ -4,12 +4,12 @@ using namespace std;
 
 class DynamicArray
 {
-	int* ptr; 
-	int size;  
+	int* ptr;
+	int size;
 public:
 	DynamicArray();
 	DynamicArray(int);
-	DynamicArray(const DynamicArray&); 
+	DynamicArray(const DynamicArray&);
 	~DynamicArray();
 	DynamicArray& operator=(const DynamicArray& right);
 
@@ -18,11 +18,11 @@ public:
 	int* GetPointer() const;
 	int GetSize() const;
 
-	
+
 	void ReSize(int new_size);
 	void Sort();
-	int Search(int a); 
-	void Reverse(); 
+	int Search(int a);
+	void Reverse();
 
 	DynamicArray operator+(int a);
 	DynamicArray operator-(int a);
@@ -32,4 +32,6 @@ public:
 	DynamicArray operator++();
 	DynamicArray operator--();
 };
+
+ostream& operator<<(ostream& os, const DynamicArray& obj);
 

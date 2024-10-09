@@ -73,7 +73,7 @@ void DynamicArray::ReSize(int new_size)
 
 	int temp;
 	if (new_size < this->size) temp = new_size;
-	else { temp = this->size;}
+	else { temp = this->size; }
 
 	for (int i = 0; i < temp; i++)
 	{
@@ -91,9 +91,9 @@ void DynamicArray::ReSize(int new_size)
 }
 void DynamicArray::Sort()
 {
-	for (int i = 0; i < size-1; i++)
+	for (int i = 0; i < size - 1; i++)
 	{
-		for (int j = 0; j < size-1-i; j++)
+		for (int j = 0; j < size - 1 - i; j++)
 		{
 			if (ptr[j] > ptr[j + 1]) swap(ptr[j], ptr[j + 1]);
 		}
@@ -106,7 +106,7 @@ int DynamicArray::Search(int a)
 	for (int i = 0; i < size; i++)
 	{
 		if (ptr[i] == a) {
-			isFound = true; 
+			isFound = true;
 			return i;
 		}
 	}
@@ -130,7 +130,7 @@ DynamicArray DynamicArray::operator+(int a)
 
 	for (int i = 0; i < new_size; i++)
 	{
-		if (i<size)
+		if (i < size)
 		{
 			new_ptr[i] = ptr[i];
 		}
@@ -171,7 +171,7 @@ DynamicArray DynamicArray::operator*(int a)
 	{
 		new_ptr.ptr[i] = ptr[i] * a;
 	}
-	
+
 	return new_ptr;
 }
 
@@ -215,12 +215,12 @@ DynamicArray DynamicArray::operator-(DynamicArray b)
 	}
 
 	DynamicArray new_ptr;
-	new_ptr.size = max_size-min_size;
+	new_ptr.size = max_size - min_size;
 	new_ptr.ptr = new int[new_ptr.size];
 
 	for (int i = 0; i < new_ptr.size; i++)
 	{
-		new_ptr.ptr[i] = arr[min_size+i];
+		new_ptr.ptr[i] = arr[min_size + i];
 	}
 	return new_ptr;
 }
@@ -262,3 +262,16 @@ DynamicArray DynamicArray::operator--()
 	}
 	else { cout << "Array too small " << endl;  return *this; }
 }
+
+ostream& operator<<(ostream& os, const DynamicArray& obj)
+{
+	os <<"Size:  " << obj.GetSize() << endl << "Array: ";
+	for (int i = 0; i < obj.GetSize(); i++)
+	{
+		os << *(obj.GetPointer() + i) << ' ';
+	}
+	os << endl << endl;
+	return os;
+}
+
+

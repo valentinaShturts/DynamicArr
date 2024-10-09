@@ -4,7 +4,7 @@
 
 
 
-DynamicArray GetObj() 
+DynamicArray GetObj()
 {
 	DynamicArray obj(3);
 	obj.Input();
@@ -13,13 +13,13 @@ DynamicArray GetObj()
 }
 int main()
 {
-	DynamicArray a(5); 
+	DynamicArray a(5);
 	a.Input();
-	a.Output();
+	cout << a;
 	DynamicArray b;
 	b = a;
-	b.Output();
-	
+	cout << b;
+
 	/*DynamicArray rez = a + 10;
 	rez.Output();
 	DynamicArray rez1 = a - 2;
